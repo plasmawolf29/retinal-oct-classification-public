@@ -108,4 +108,45 @@ Phase 3D & 0 / 621 & 100.00\% & 1 / 3,625 & 99.97\% \\
 \end{tabular}
 \end{table}
 
+% ------------------------------------------------------------------------------
+% Table 5: Optical Signal Processing Ablation
+% ------------------------------------------------------------------------------
+\begin{table*}[t]
+\centering
+\small
+\caption{\textbf{Optical Signal Processing and Zero-Shot Domain Filtering Ablation ($N = 6,246$).} Evaluating image-space CDF matching and speckle denoising on the Hierarchical Tri-Fusion ensemble.}
+\label{tab:optical_filters}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Optical Filtering Strategy} & \textbf{Formulation} & \textbf{Global Acc} & \textbf{Global F1} & \textbf{Duke F1} & \textbf{NEH F1} & \textbf{Kermany F1} \\
+\midrule
+\textbf{Raw Baseline (Universal CLAHE)} & Universal CLAHE ($224 \times 224$) & \textbf{74.80\%} & \textbf{76.74\%} & \textbf{100.00\%} & \textbf{70.34\%} & \textbf{92.55\%} \\
+Bilateral Speckle Denoising & $d=5, \sigma_c=25, \sigma_s=25$ & 74.05\% & 76.20\% & 99.85\% & 69.20\% & 92.11\% \\
+Reference Histogram Matching & CDF equalization to Heidelberg & 66.60\% & 65.67\% & 82.12\% & 65.83\% & 69.81\% \\
+Combined Pipeline & Bilateral + CDF matching & 66.44\% & 66.37\% & 81.76\% & 66.15\% & 67.89\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% ------------------------------------------------------------------------------
+% Table 6: Classical Machine Learning Benchmark
+% ------------------------------------------------------------------------------
+\begin{table*}[t]
+\centering
+\small
+\caption{\textbf{Pipeline 1: Scikit-Learn Classical Classifiers and Ensembles ($N = 1,000$).} Demonstrating the Representation Learning Premium of Deep ResNet-18 architectures over statistical descriptors.}
+\label{tab:classical_ml}
+\begin{tabular}{llccccc}
+\toprule
+\textbf{Pipeline Design} & \textbf{Algorithm \& Feature Representation} & \textbf{Feature Dim ($D$)} & \textbf{Train Time} & \textbf{Accuracy} & \textbf{Macro F1} & \textbf{Representation Gap} \\
+\midrule
+\textbf{Design A: Base Ensemble} & Soft Voting (RF + HistGBT + KNN) & 784 & 58.4s & \textbf{62.70\%} & \textbf{62.09\%} & $-24.67\%$ \\
+\textbf{Design B: PCA + Stacking} & PCA (90\% var) + Stacking $\to$ LogisticRegression & 33 & 15.6s & 59.50\% & 59.29\% & $-27.47\%$ \\
+\textbf{Design C: Biomedical Features} & 66 Handcrafted Retinal Descriptors + HistGBT & 66 & \textbf{6.7s} & 57.70\% & 56.41\% & $-30.35\%$ \\
+\midrule
+\textbf{Deep Learning Champion (2A)} & ResNet-18 Deep Convolutional Features & 512 & 126.4 min & \textbf{86.76\%} & \textbf{86.76\%} & \textbf{Baseline (Gold Standard)} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
 \end{document}

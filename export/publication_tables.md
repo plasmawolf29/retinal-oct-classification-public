@@ -63,3 +63,31 @@ This document presents the complete diagnostic and comparative benchmarks for th
 | **20.0%** | 4,997 | 85.15% | 86.67% | 85.08% | Specialist-verified tier |
 | **25.0%** | 4,685 | 86.28% | 87.39% | 86.23% | High sensitivity screening |
 | **30.0%** | 4,373 | 87.72% | 88.44% | 87.69% | Critical referral mode (difficult cases escalated) |
+
+---
+
+## Table 5: Optical Signal Processing & Zero-Shot Domain Filtering Ablation ($N = 6,246$)
+
+*Evaluation of zero-shot image-space optical normalization and speckle denoising directly applied to the held-out multi-scanner test battery using the Hierarchical Exp 2 Tri-Fusion ensemble.*
+
+| Optical Processing Pipeline | Mathematical Formulation | Global Acc (%) | Global Macro F1 (%) | Duke F1 (%) | NEH F1 (%) | Kermany F1 (%) | Clinical Rationale & Finding |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
+| **Raw Baseline (CLAHE)** 🏆 | Universal CLAHE ($224 \times 224$) | **74.80%** | **76.74%** | **100.00%** | **70.34%** | **92.55%** | **Optimal Baseline**: Preserves native textural micro-gradients and layer boundary contrast. |
+| **Bilateral Denoising** | $I_{\text{denoised}} = \text{Bilateral}(I, d=5, \sigma_c=25, \sigma_s=25)$ | 74.05% | 76.20% | 99.85% | 69.20% | 92.11% | Slight degradation (-0.54% F1): Smoothing speckle inadvertently erodes subtle Drusen and fluid boundary details. |
+| **Reference Histogram Matching** | $I_{\text{matched}} = \mathcal{T}_{\text{CDF}}^{-1}(\mathcal{T}_{\text{ref}}(I))$ to Heidelberg | 66.60% | 65.67% | 82.12% | 65.83% | 69.81% | Severe degradation (-11.07% F1): Forcing global histogram matching compresses scanner-specific anatomical dynamic ranges. |
+| **Combined Pipeline** | Bilateral Denoising + Reference CDF Matching | 66.44% | 66.37% | 81.76% | 66.15% | 67.89% | Cumulative loss (-10.37% F1): Destroys cross-cohort domain boundaries without improving Topcon accuracy. |
+
+---
+
+## Table 6: Pipeline 1: Scikit-Learn Classical Classifiers & Ensembles (UConn BME Rubric)
+
+*Evaluated on the held-out test cohort ($N = 1,000$) to quantify the exact **Representation Learning Premium** of Deep Convolutional Neural Networks over classical statistical descriptors and shallow ensembles.*
+
+| Classical Design | Algorithmic Formulation & Feature Space | Feature Dim ($D$) | Training Time (s) | Test Acc (%) | Balanced Acc (%) | Macro F1 (%) | Weighted F1 (%) | Representation Gap vs. DL Champion |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| **Design A: Base Ensemble** 🥈 | Soft Voting: RF (60 trees) + HistGBT + KNN ($k=7$) | 784 (Flattened) | 58.4s | **62.70%** | **62.70%** | **62.09%** | **62.09%** | $-24.67\%$ F1 vs. ResNet-18 Phase 2A ($86.76\%$) |
+| **Design B: PCA + Stacking** | PCA ($90\%$ cumulative variance) + Stacking (RF, HistGBT) $\to$ LogisticRegression | 33 (PCA Latent) | 15.6s | 59.50% | 59.50% | 59.29% | 59.29% | $-27.47\%$ F1 (PCA discards non-linear layer edges) |
+| **Design C: Custom Features** 🥉 | 66 Domain-Specific Biomedical Descriptors + HistGBT ($M=120$) | **66 (Biomedical)** | **6.7s** | 57.70% | 57.70% | 56.41% | 56.41% | $-30.35\%$ F1 (Handcrafted features miss multi-scale receptive fields) |
+| **Deep Learning Reference** 🏆 | ResNet-18 Deep Convolutional Feature Representation | 512 (ResNet-18) | $\sim 126$ min | **86.76%** | **87.10%** | **86.76%** | **86.76%** | **Gold Standard (+24.67% boost over classical)** |
+
+
