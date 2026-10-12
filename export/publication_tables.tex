@@ -143,8 +143,28 @@ Combined Pipeline & Bilateral + CDF matching & 66.44\% & 66.37\% & 81.76\% & 66.
 \textbf{Design A: Base Ensemble} & Soft Voting (RF + HistGBT + KNN) & 784 & 58.4s & \textbf{62.70\%} & \textbf{62.09\%} & $-24.67\%$ \\
 \textbf{Design B: PCA + Stacking} & PCA (90\% var) + Stacking $\to$ LogisticRegression & 33 & 15.6s & 59.50\% & 59.29\% & $-27.47\%$ \\
 \textbf{Design C: Biomedical Features} & 66 Handcrafted Retinal Descriptors + HistGBT & 66 & \textbf{6.7s} & 57.70\% & 56.41\% & $-30.35\%$ \\
+\textbf{Design D: Super-Classical} & 153 Multi-Scale Biomedical + PCA (HistGBT + RF) & 153 & 48.3s & \textbf{63.40\%} & \textbf{61.95\%} & $-24.81\%$ \\
 \midrule
 \textbf{Deep Learning Champion (2A)} & ResNet-18 Deep Convolutional Features & 512 & 126.4 min & \textbf{86.76\%} & \textbf{86.76\%} & \textbf{Baseline (Gold Standard)} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% ------------------------------------------------------------------------------
+% Table 7: Curriculum Adaptation & Catastrophic Forgetting
+% ------------------------------------------------------------------------------
+\begin{table*}[t]
+\centering
+\small
+\caption{\textbf{Curriculum Domain Adaptation and Catastrophic Forgetting Ablation ($N = 6,246$).} Benchmarking single-domain fine-tuning vs simultaneous multi-scanner balance on Phase 3E.}
+\label{tab:catastrophic_forgetting}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Adaptation Strategy} & \textbf{Training Scheme} & \textbf{Global Acc} & \textbf{Global F1} & \textbf{Duke F1} & \textbf{NEH F1} & \textbf{Kermany F1} \\
+\midrule
+\textbf{Phase 3E (Proportional Dampening)} & 50\% Hdbg / 40\% Topcon / 10\% Duke & \textbf{77.33\%} & \textbf{80.47\%} & \textbf{99.85\%} & 67.28\% & \textbf{92.76\%} \\
+\textbf{Hierarchical Exp 2 Tri-Fusion} & Multi-Architecture Ensemble & \textbf{79.23\%} & \textbf{82.07\%} & \textbf{100.00\%} & \textbf{70.34\%} & \textbf{92.55\%} \\
+Staged Fine-Tuning (Topcon Only) & Isolated Topcon (frozen stem/layer2) & 69.40\% & 67.50\% & 95.18\% & 67.97\% & 82.46\% \\
 \bottomrule
 \end{tabular}
 \end{table*}

@@ -88,6 +88,21 @@ This document presents the complete diagnostic and comparative benchmarks for th
 | **Design A: Base Ensemble** 🥈 | Soft Voting: RF (60 trees) + HistGBT + KNN ($k=7$) | 784 (Flattened) | 58.4s | **62.70%** | **62.70%** | **62.09%** | **62.09%** | $-24.67\%$ F1 vs. ResNet-18 Phase 2A ($86.76\%$) |
 | **Design B: PCA + Stacking** | PCA ($90\%$ cumulative variance) + Stacking (RF, HistGBT) $\to$ LogisticRegression | 33 (PCA Latent) | 15.6s | 59.50% | 59.50% | 59.29% | 59.29% | $-27.47\%$ F1 (PCA discards non-linear layer edges) |
 | **Design C: Custom Features** 🥉 | 66 Domain-Specific Biomedical Descriptors + HistGBT ($M=120$) | **66 (Biomedical)** | **6.7s** | 57.70% | 57.70% | 56.41% | 56.41% | $-30.35\%$ F1 (Handcrafted features miss multi-scale receptive fields) |
+| **Design D: Super-Classical Stacker** | 153 Multi-Scale Biomedical Descriptors + PCA Latents (HistGBT + RF) | 153 (Multi-Scale) | 48.3s | **63.40%** | **63.40%** | **61.95%** | **61.95%** | Best Classical Standalone Model |
+| **Multi-Modal Exp 2 + Design D** 🎯 | Soft Probability Stacking (70% Deep Exp 2 + 30% Design D Features) | 4 (Soft Probs) | 87.7s | **62.70%** | **62.70%** | **54.33%** | **54.33%** | **+3.40% Acc / +2.91% F1 boost** over standalone Exp 2 on ambiguous scans |
 | **Deep Learning Reference** 🏆 | ResNet-18 Deep Convolutional Feature Representation | 512 (ResNet-18) | $\sim 126$ min | **86.76%** | **87.10%** | **86.76%** | **86.76%** | **Gold Standard (+24.67% boost over classical)** |
+
+---
+
+## Table 7: Curriculum Adaptation & Catastrophic Forgetting Ablation ($N = 6,246$)
+
+*Evaluating single-domain fine-tuning vs. multi-scanner balanced training on Phase 3E.*
+
+| Training / Adaptation Strategy | Cohorts Exposed During Epochs | Global Acc (%) | Global Macro F1 (%) | Duke F1 (%) | NEH F1 (%) | Kermany F1 (%) | Clinical Rationale & Finding |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
+| **Phase 3E (Proportional Dampening)** 🏆 | 50% Heidelberg / 40% Topcon / 10% Duke | **77.33%** | **80.47%** | **99.85%** | 67.28% | **92.76%** | **Gold Standard**: True simultaneous cross-scanner equilibrium with zero catastrophic forgetting. |
+| **Hierarchical Exp 2 Tri-Fusion** 🏆 | Multi-Architecture Ensemble (3C + 3E + 3D + 3A) | **79.23%** | **82.07%** | **100.00%** | **70.34%** | **92.55%** | **Peak Benchmark**: Complementary inductive biases from unpooled 112-stem + domain parity correctors. |
+| **Staged Fine-Tuning (NEH Topcon Only)** | Isolated Topcon Fine-Tuning (frozen stem/layer2) | 69.40% | 67.50% | 95.18% | 67.97% | 82.46% | **Severe Catastrophic Forgetting**: Fine-tuning exclusively on Topcon destroys cross-scanner invariance, dropping Duke (-4.67%) and Kermany (-10.30%). |
+
 
 
