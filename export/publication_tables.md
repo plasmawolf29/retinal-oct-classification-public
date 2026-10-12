@@ -30,7 +30,9 @@ This document presents the complete diagnostic and comparative benchmarks for th
 | **Equal 5-Model Pentad** | Uniform ($0.20$ each) | 3A, 3B, 3C, 3D, 3E | 78.82% | 81.72% | 91.58% | 99.65% | 69.90% |
 | **Dual Specialist (Equal)** | $0.50 \cdot 3C + 0.50 \cdot 3E$ | 3C, 3E | 79.09% | 81.59% | 89.39% | 100.00% | 70.79% |
 | **Dual Specialist (Optimal Sweep) 🥈** | $\mathbf{0.38 \cdot 3C + 0.62 \cdot 3E}$ | 3C, 3E | **79.07%** | **81.81%** | **90.96%** | **100.00%** | **70.61%** |
-| **Weighted Champion 🏆** | $\mathbf{0.50 \cdot 3E + 0.33 \cdot 3C + 0.17 \cdot 3D}$ | 3C, 3D, 3E | **79.04%** | **81.87%** | **91.95%** | **99.85%** | **70.61%** |
+| **Weighted Champion** | $0.50 \cdot 3E + 0.33 \cdot 3C + 0.17 \cdot 3D$ | 3C, 3D, 3E | 79.04% | 81.87% | 91.95% | 99.85% | 70.61% |
+| **Hierarchical Exp 1 (DS + 3D)** | $0.93 \cdot \text{DS} + 0.07 \cdot 3D$ | 3C, 3E, 3D | 79.14% | 81.89% | 91.87% | 100.00% | 70.34% |
+| **Hierarchical Exp 2 (Tri-Fusion) 🏆** | $\mathbf{0.86 \cdot \text{DS} + 0.10 \cdot 3D + 0.04 \cdot 3A}$ | 3C, 3E, 3D, 3A | **79.23%** | **82.07%** | **92.55%** | **100.00%** | **70.34%** |
 
 ---
 
