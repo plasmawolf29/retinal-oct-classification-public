@@ -1,0 +1,179 @@
+{
+  "dataset_results": {
+    "kermany": {
+      "samples": 1000,
+      "present_classes": [
+        "CNV",
+        "DME",
+        "DRUSEN",
+        "NORMAL"
+      ],
+      "3A": {
+        "acc": 0.907,
+        "f1": 0.9047459970564362
+      },
+      "3B": {
+        "acc": 0.595,
+        "f1": 0.5648057791436905
+      },
+      "3C": {
+        "acc": 0.774,
+        "f1": 0.7618032960613204
+      },
+      "Equal_Ensemble": {
+        "acc": 0.867,
+        "f1": 0.8676611581343479
+      },
+      "Weighted_Ensemble": {
+        "acc": 0.9,
+        "f1": 0.8992551220784717
+      }
+    },
+    "duke": {
+      "samples": 621,
+      "present_classes": [
+        "DME",
+        "DRUSEN",
+        "NORMAL"
+      ],
+      "3A": {
+        "acc": 0.9887278582930756,
+        "f1": 0.9868168613796513
+      },
+      "3B": {
+        "acc": 0.9919484702093397,
+        "f1": 0.9914215408675243
+      },
+      "3C": {
+        "acc": 0.9790660225442834,
+        "f1": 0.9806094985440051
+      },
+      "Equal_Ensemble": {
+        "acc": 0.9951690821256038,
+        "f1": 0.9944342982550607
+      },
+      "Weighted_Ensemble": {
+        "acc": 0.9951690821256038,
+        "f1": 0.9944342982550607
+      }
+    },
+    "neh": {
+      "samples": 3625,
+      "present_classes": [
+        "CNV",
+        "DRUSEN",
+        "NORMAL"
+      ],
+      "3A": {
+        "acc": 0.6546206896551724,
+        "f1": 0.6611938947842816
+      },
+      "3B": {
+        "acc": 0.6537931034482759,
+        "f1": 0.6582080797062498
+      },
+      "3C": {
+        "acc": 0.7042758620689655,
+        "f1": 0.7052581278503451
+      },
+      "Equal_Ensemble": {
+        "acc": 0.6924137931034483,
+        "f1": 0.6968011292084911
+      },
+      "Weighted_Ensemble": {
+        "acc": 0.6888275862068965,
+        "f1": 0.6940943846076584
+      }
+    },
+    "octmnist": {
+      "samples": 1000,
+      "present_classes": [
+        "CNV",
+        "DME",
+        "DRUSEN",
+        "NORMAL"
+      ],
+      "3A": {
+        "acc": 0.865,
+        "f1": 0.8614552989054429
+      },
+      "3B": {
+        "acc": 0.887,
+        "f1": 0.8843055090712919
+      },
+      "3C": {
+        "acc": 0.866,
+        "f1": 0.8632674532382947
+      },
+      "Equal_Ensemble": {
+        "acc": 0.88,
+        "f1": 0.8773240957630072
+      },
+      "Weighted_Ensemble": {
+        "acc": 0.876,
+        "f1": 0.8726185143614247
+      }
+    }
+  },
+  "global_eval": {
+    "total_samples": 6246,
+    "3A": {
+      "acc": 0.7619276336855587,
+      "macro_f1": 0.7948698559397633
+    },
+    "3B": {
+      "acc": 0.7153378162023695,
+      "macro_f1": 0.7366748144110892
+    },
+    "3C": {
+      "acc": 0.7686519372398335,
+      "macro_f1": 0.781687053738858
+    },
+    "equal_ensemble": {
+      "acc": 0.7804995196926032,
+      "macro_f1": 0.8056256002335399
+    },
+    "weighted_ensemble": {
+      "acc": 0.7830611591418508,
+      "macro_f1": 0.8114061809914141
+    }
+  },
+  "triage_results": [
+    {
+      "referral_rate": 0.0,
+      "retained_samples": 6246,
+      "retained_accuracy": 0.7830611591418508,
+      "retained_macro_f1": 0.8114061809914141
+    },
+    {
+      "referral_rate": 0.05,
+      "retained_samples": 5933,
+      "retained_accuracy": 0.7930220798921288,
+      "retained_macro_f1": 0.8215888924035641
+    },
+    {
+      "referral_rate": 0.1,
+      "retained_samples": 5621,
+      "retained_accuracy": 0.8064401352072585,
+      "retained_macro_f1": 0.8329014021309158
+    },
+    {
+      "referral_rate": 0.15,
+      "retained_samples": 5309,
+      "retained_accuracy": 0.8216236579393483,
+      "retained_macro_f1": 0.8448555506866298
+    },
+    {
+      "referral_rate": 0.2,
+      "retained_samples": 4997,
+      "retained_accuracy": 0.8363017810686412,
+      "retained_macro_f1": 0.8554277652632029
+    },
+    {
+      "referral_rate": 0.25,
+      "retained_samples": 4684,
+      "retained_accuracy": 0.8509820666097353,
+      "retained_macro_f1": 0.8665096280347051
+    }
+  ]
+}

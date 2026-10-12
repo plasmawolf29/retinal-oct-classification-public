@@ -1,0 +1,61 @@
+# ============================================================
+# PUBLIC REPO .gitignore
+# retinal-oct-classification-public (plasmawolf29)
+# ============================================================
+
+# --- Large raw datasets ---
+external_datasets/
+datasets/
+data/
+*.npz
+*.mat
+*.h5
+*.hdf5
+
+# --- Model weights (too large for GitHub, use releases/HuggingFace) ---
+*.pth
+*.pt
+*.ckpt
+
+# --- Private notes and assignment rubrics ---
+notes/
+*.docx
+*.pdf
+
+# --- Dev/scratch scripts ---
+scratch/
+cpu-fix/
+
+# --- Agent config ---
+.agents/
+
+# --- Python cache ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# --- Virtual environments ---
+venv/
+env/
+.env/
+.venv/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+*.ipynb
+
+# --- OS / IDE ---
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# --- Temp / build ---
+*.tmp
+*.log
+build/
+dist/
+*.egg-info/
